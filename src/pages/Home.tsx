@@ -14,34 +14,32 @@ export function Home() {
   const queryParams = new URLSearchParams(location.search);
   const valorDaBusca = queryParams.get('search');
 
-  return <h1>oie {valorDaBusca}</h1>
+  const { data: items, isFetching } = useSearchItem({
+    limit: 20,
+    offset: 0,
+    search: valorDaBusca || 'Promoções',
+    siteId: MELI_COUNTRY_CODE,
+  });
 
-  // const { data: items, isFetching } = useSearchItem({
-  //   limit: 20,
-  //   offset: 0,
-  //   search: valorDaBusca || 'Promoções',
-  //   siteId: MELI_COUNTRY_CODE,
-  // });
+  if (isFetching) {
+    return (
+      <div style={{ margin: '24px' }}>
+        <Skeleton height={190} /><br />
+        <Skeleton height={190} /><br />
+        <Skeleton height={190} /><br />
+      </div>
+    )
+  }
 
-  // if (isFetching) {
-  //   return (
-  //     <div style={{ margin: '24px' }}>
-  //       <Skeleton height={190} /><br />
-  //       <Skeleton height={190} /><br />
-  //       <Skeleton height={190} /><br />
-  //     </div>
-  //   )
-  // }
-
-  // return (
-  //   <CardItemList>
-  //     {items?.results?.map(item => (
-  //       <Fragment key={item.title}>
-  //         <CardItem thumbnail={item.thumbnail} title={item.title} id={item.id} price={item.price} />
-  //       </Fragment>
-  //     ))}
-  //   </CardItemList>
-  // )
+  return (
+    <CardItemList>
+      {items?.results?.map(item => (
+        <Fragment key={item.title}>
+          <CardItem thumbnail={item.thumbnail} title={item.title} id={item.id} price={item.price} />
+        </Fragment>
+      ))}
+    </CardItemList>
+  )
 }
 
 export default Home
