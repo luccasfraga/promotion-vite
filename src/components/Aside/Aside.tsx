@@ -1,30 +1,24 @@
-import { AsideContent } from "./Aside.styles"
+import { AsideContent, List } from "./Aside.styles"
 import { MELI_COUNTRY_CODE } from '../../configs/environment';
 import { useCategory } from '../../hooks/useCategory/useCategory'
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-
 
 export function Aside() {
   const { data, isFetching } = useCategory({
     id: MELI_COUNTRY_CODE,
   });
 
-  if (!data) {
-    return null;
-  }
   
   if (isFetching) {
     return (
-      <AsideContent>
-        <h1>carregando....</h1>
-      </AsideContent>
+      <h1>carregando....</h1>
     )
   }
-  
+
   return (
     <AsideContent>
-      <ul>
+      <List>
         {data?.map(item => (
           <Fragment key={item?.id}>
             <li>
@@ -34,7 +28,7 @@ export function Aside() {
             </li>
           </Fragment>
         ))}
-      </ul>
+      </List>
     </AsideContent>
   )
 }

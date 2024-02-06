@@ -1,10 +1,9 @@
 import { useSearchItem } from '../hooks/useSearchItem/useSearchItem'
 import { useParams } from 'react-router-dom';
-import { Link } from "react-router-dom";
-
-
-import { formatCurrency } from '../utils/formatCurrency'
-
+import { CardItemList } from '../styles/global'
+import { Fragment } from 'react';
+import { CardItem } from '../components/CardItem/CardItem'
+import Skeleton from 'react-loading-skeleton'
 import { MELI_COUNTRY_CODE } from '../configs/environment';
 
 export function Search() {
@@ -19,21 +18,21 @@ export function Search() {
 
   if (isFetching) {
     return (
-      <h1>carregando....</h1>
+      <div style={{ margin: '24px' }}>
+        <Skeleton height={190} /><br />
+        <Skeleton height={190} /><br />
+        <Skeleton height={190} /><br />
+      </div>
     )
   }
 
   return (
-    <div>
+    <CardItemList>
       {items?.results?.map(item => (
-        <div key={item.id}>
-          <Link to={`/product/${item?.id}`}>
-            <img src={item?.thumbnail} alt={item?.title} />
-            <b>{item?.title}</b>
-            <b>{formatCurrency(item?.price)}</b>
-          </Link>
-        </div>
+        <Fragment key={item.id}>
+          <CardItem thumbnail={item.thumbnail} title={item.title} id={item.id} price={item.price} />
+        </Fragment>
       ))}
-    </div>
+    </CardItemList>
   )
 }

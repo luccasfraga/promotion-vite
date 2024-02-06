@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useItem } from '../hooks/useItem/useItem'
-import { formatCurrency } from '../utils/formatCurrency'
+import { ItemFull }  from '../components/ItemFull/ItemFull'
+import Skeleton from 'react-loading-skeleton'
 
 export function Product() {
   const { searchItem } = useParams();
@@ -11,18 +12,21 @@ export function Product() {
 
   if (isFetching) {
     return (
-      <h1>carregando....</h1>
+      <div style={{ margin: '24px' }}>
+        <Skeleton count={1} height={50} /><br />
+        <Skeleton count={1} height={230} /><br />
+        <Skeleton count={1} height={80} /><br />
+        <Skeleton count={1} height={20} width={150} />
+      </div>
     )
   }
-  
-  return (
-    <div>
-      <p>{item?.title}</p>
-      <p>{item?.description}</p>
-      <b>{formatCurrency(item?.price)}</b>
 
-      <br />
-      {item?.pictures?.map(img => <img src={img.url} alt="" />)}
-    </div>
+  return (
+    <ItemFull
+      thumbnail={item?.pictures}
+      title={item?.title}
+      price={item?.price}
+      description={item?.description}
+    />
   )
 }

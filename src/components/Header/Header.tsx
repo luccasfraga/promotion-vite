@@ -1,6 +1,8 @@
 import { Container } from "./Header.styles"
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Logo from '../../images/logo.webp'
+import { Link } from "react-router-dom";
 
 function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -30,7 +32,6 @@ interface CustomFormEvent extends React.FormEvent<HTMLFormElement> {
 
 interface Params {
   searchTerm?: string | undefined;
-  // Outros parâmetros da rota, se houver
 }
 
 export function Header() {
@@ -58,7 +59,9 @@ export function Header() {
 
   return (
     <Container>
-      <h1>Header</h1>
+      <Link to="/">
+        <img src={Logo} alt="Meli" className="logo" />
+      </Link>
 
       <form onSubmit={onSubmit}>
         <input
@@ -67,7 +70,8 @@ export function Header() {
           name="search"
           value={searchParam}
           onChange={(e) => setSearchParam(e.target.value)}
-          placeholder="Buscar item"
+          placeholder="Buscar produtos, marcas e muito mais…"
+          className="search"
         />
       </form>
     </Container>

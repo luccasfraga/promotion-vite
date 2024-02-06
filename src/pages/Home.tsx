@@ -1,8 +1,10 @@
 import { useSearchItem } from '../hooks/useSearchItem/useSearchItem'
 import { useLocation } from 'react-router-dom';
-import { formatCurrency } from '../utils/formatCurrency'
-
+import { CardItem } from '../components/CardItem/CardItem'
+import { CardItemList } from '../styles/global'
 import { MELI_COUNTRY_CODE } from '../configs/environment';
+import Skeleton from 'react-loading-skeleton'
+import { Fragment } from 'react';
 
 export function Home() {
   const location = useLocation();
@@ -18,20 +20,21 @@ export function Home() {
 
   if (isFetching) {
     return (
-      <h1>carregando....</h1>
+      <div style={{ margin: '24px' }}>
+        <Skeleton height={190} /><br />
+        <Skeleton height={190} /><br />
+        <Skeleton height={190} /><br />
+      </div>
     )
   }
 
   return (
-    <div>
-
+    <CardItemList>
       {items?.results?.map(item => (
-        <div>
-          <img src={item?.thumbnail} alt={item?.title} />
-          <b>{item?.title}</b>
-          <b>{formatCurrency(item?.price)}</b>
-        </div>
+        <Fragment key={item.title}>
+          <CardItem thumbnail={item.thumbnail} title={item.title} id={item.id} price={item.price} />
+        </Fragment>
       ))}
-    </div>
+    </CardItemList>
   )
 }

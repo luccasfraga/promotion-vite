@@ -1,15 +1,13 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, styled } from "styled-components";
+
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-
-  :focus {
-    outline: 0;
-    box-shadow: 0 0 0 2px ${props => props.theme['green-500']};
   }
 
   body {
@@ -21,5 +19,20 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+`
+
+export const CardItemList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 12px;
+
+  @media (min-width:  ${props => props.theme.sizeDesktop}) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `
