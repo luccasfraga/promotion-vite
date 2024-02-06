@@ -72,6 +72,7 @@ export function Header() {
           onChange={(e) => setSearchParam(e.target.value)}
           placeholder="Buscar produtos, marcas e muito mais…"
           className="search"
+          role="search"
         />
       </form>
     </Container>

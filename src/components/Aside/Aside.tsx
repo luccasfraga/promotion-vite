@@ -3,6 +3,7 @@ import { MELI_COUNTRY_CODE } from '../../configs/environment';
 import { useCategory } from '../../hooks/useCategory/useCategory'
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import Skeleton from 'react-loading-skeleton'
 
 export function Aside() {
   const { data, isFetching } = useCategory({
@@ -12,7 +13,9 @@ export function Aside() {
   
   if (isFetching) {
     return (
-      <h1>carregando....</h1>
+      <div style={{ margin: '24px' }}>
+        <Skeleton count={15} height={35} />
+      </div>
     )
   }
 
