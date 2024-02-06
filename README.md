@@ -25,3 +25,8 @@ Certifique-se de ter o Node.js instalado e, em seguida, execute os seguintes com
 ```sh
 yarn && yarn dev
 ```
+
+### Preview
+
+https://github.com/luccasfraga/promotion-vite/assets/6876234/c6a50f24-b0ce-461e-91dd-49db603546a1
+
