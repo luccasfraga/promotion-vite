@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Projeto Promotions Meli
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Decisões de Tecnologia e Arquitetura
 
-Currently, two official plugins are available:
+Este projeto utiliza o Vite como seu bundler e ferramenta de desenvolvimento rápido para React, combinado com o React Query para gerenciamento de estados.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Justificativas
 
-## Expanding the ESLint configuration
+#### Vite
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Desenvolvimento Rápido**: Vite oferece uma experiência de desenvolvimento rápida e eficiente, proporcionando recarregamento rápido, inicialização de projeto simplificada e suporte nativo para TypeScript.
 
-- Configure the top-level `parserOptions` property like this:
+- **Módulos ESM**: O suporte nativo para módulos ESM (ECMAScript Modules) melhora a eficiência da entrega de código ao navegador, otimizando o carregamento de módulos.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+#### React Query
+
+- **Simplicidade e Flexibilidade**: React Query simplifica a gestão do estado da aplicação, tornando fácil buscar, atualizar e manter o estado da aplicação no lado do cliente. Sua abordagem declarativa facilita a integração com componentes React.
+
+- **Consulta de Dados Desacoplada**: A abordagem de consulta de dados desacoplada do React Query permite que as chamadas de API sejam feitas de forma independente, promovendo um código mais modular e reutilizável.
+
+### Instalação e Execução
+
+Certifique-se de ter o Node.js instalado e, em seguida, execute os seguintes comandos:
+
+```sh
+yarn && yarn dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
